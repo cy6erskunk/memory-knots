@@ -59,6 +59,44 @@ screenX/Y gives the coordinates relative to the screen in device pixels.
 width/height uses the same values as documentElement .clientWidth/Height (the viewport, in other words). It works with CSS pixels.
 device-width/device-height uses the same values as screen.width/height (the screen, in other words). It works with device pixels.
 
+## Mobile browsers
+Two viewports: the visual viewport and the layout viewport.
+Visual viewport is kinda window (aperture) moving on top of layout viewport.
+The visual viewport is the part of the page that’s currently shown on-screen. The user may scroll to change the part of the page he sees, or zoom to change the size of the visual viewport.
+
+However, the CSS layout, especially percentual widths, are calculated relative to the layout viewport, which is considerably wider than the visual viewport.
+
+How wide is the layout viewport? That differs per browser. Safari iPhone uses 980px, Opera 850px, Android WebKit 800px, and IE 974px.
+
+browsers have chosen their dimensions of the layout viewport such that it completely covers the screen in fully zoomed-out mode (and is thus equal to the visual viewport).
+
+The layout viewport width is always the same. If you rotate your phone, the visual viewport changes, but the browser adapts to this new orientation by zooming in slightly so that the layout viewport is again as wide as the visual viewport.
+
+This has consequences for the layout viewport’s height, which is now substantially less than in portrait mode. But web developers don’t care about the height, only about the width.
+
+### Measuring the layout viewport
+document.documentElement.clientWidth/Height
+- Layout viewport dimensions
+- Measured inCSS pixels
+- Full support: Opera, iPhone, Android, Symbian, Bolt, MicroB, Skyfire, Obigo
+- Problems
+  - Visual viewport dimensions in Iris
+  - Samsung WebKit reports the correct values when a <meta viewport> tag is applied to the page; the dimensions of the <html> element otherwise.
+  - Screen dimensions in device pixels in Firefox
+  - IE returns 1024x768. However, it stores the information in document.body.clientWidth/Height. This is consistent with IE6 desktop.
+
+### Measuring the visual viewport
+window.innerWidth/Height
+- Visual viewport dimensions
+- Measured in CSS pixels
+- Full support: iPhone, Symbian, BlackBerry
+- Problems
+  - Opera and Firefox return the screen width in device pixels.
+  - Android, Bolt, MicroB, and NetFront return the layout viewport dimensions in CSS pixels.
+- Not supported
+  - IE, but it gives the visual viewport dimension in document.documentElement.offsetWidth/Height.
+  - Samsung WebKit reports either the dimensions of the layout viewport or of the <html>, depending on whether a <meta viewport> tag has been applied to the page or not.
+
 ---
 ## Resources
 
@@ -67,8 +105,10 @@ device-width/device-height uses the same values as screen.width/height (the scre
 - [<b>actual</b>][11] uses `matchMedia` to obtain precise dimensions in any unit
 - [stackoverflow answer][stackoverflow answer]
 - [PPK viewports][PPK viewports]
+- [PPK viewports2][PPK viewports2]
 
   [PPK viewports]: http://www.quirksmode.org/mobile/viewports.html
+  [PPK viewports2]: http://www.quirksmode.org/mobile/viewports2.html
   [1]: http://dev.w3.org/csswg/mediaqueries/#width
   [2]: http://dev.w3.org/csswg/mediaqueries/#height
   [3]: http://www.w3.org/TR/CSS2/visuren.html#viewport
