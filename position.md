@@ -26,14 +26,20 @@ The returned value is a `DOMRect` object,
 which contains read-only properties describing the border-box in pixels. `width` and `height` are not standard (available in FF and Chrome???).
 
 #### Scrolling
-```(javascript)
-var scrollTop = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
-var scrollLeft = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+```js
+var scrollLeft = (window.pageXOffset !== undefined) ?
+    window.pageXOffset :
+    (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+var scrollTop = (window.pageYOffset !== undefined) ?
+    window.pageYOffset :
+    (document.documentElement || document.body.parentNode || document.body).scrollTop;
 ```
 
 or even 
-```(javascript)
-(((t = document.documentElement) || (t = document.body.parentNode)) && typeof t.ScrollLeft == 'number' ? t : document.body).ScrollLeft
+```javascript
+(((t = document.documentElement) || (t = document.body.parentNode)) && typeof t.ScrollLeft == 'number' ?
+    t :
+    document.body).ScrollLeft
 ```
 in third part of ternary operator.
 The `pageXOffset` property is an alias for the `scrollX` property.
@@ -41,6 +47,7 @@ All browsers except IE<9 support `pageXOffset/pageYOffset`, and in IE when DOCTY
 
 ### Another gotcha
 The document (`html` or `body`) can be shifted from left-upper corner in IE:
-
-    var topAdjunct = docElem.clientTop || body.clientTop || 0;
-    var leftAdjunct = docElem.clientLeft || body.clientLeft || 0;
+```js
+var topAdjunct = docElem.clientTop || body.clientTop || 0;
+var leftAdjunct = docElem.clientLeft || body.clientLeft || 0;
+```
