@@ -1,7 +1,31 @@
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+### Try to get [visual viewport][5]
+```js
+var w = window.innerWidth || document.documentElement.clientWidth;
+var h = window.innerHeight || document.documentElement.clientHeight;
+```
+### ...or whatever
+```js
+var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+```
+### TOC
+- [Pixels](#pixels)
+- [Screen size](#screen-size)
+  - [window.innerWidth/Height](#windowinnerwidthheight)
+  - [window.pageX/YOffset](#windowpagexyoffset)
+- [Viewport](#viewport)
+  - [document.documentElement.clientWidth/Height](#documentdocumentelementclientwidthheight)
+  - [document.documentElement.offsetWidth/Height](#documentdocumentelementoffsetwidthheight)
+- [Event coordinates](#event-coordinates)
+- [Media queries](#media-queries)
+- [Mobile browsers](#mobile-browsers)
+  - [Measuring the layout viewport](#measuring-the-layout-viewport)(document.documentElement.clientWidth/Height)
+  - [Measuring the visual viewport](#measuring-the-visual-viewport)(window.innerWidth/Height)
+- [Resources](#resources)
 
-## Excerpt from [PPK][PPK viewports]
+## Here we go!
+Mostly excerpts from [PPK][PPK viewports], with some additions
+
 ### Pixels
 - CSS pixels
 - device pixels
@@ -13,7 +37,7 @@ CSS pixels increase in size when users zooms in, device pixels stay the same.
 Screen size, i.e. screen.width and screen.height are measured in device pixels because they never change,
 it is property of the screen (not IE8: it measures in CSS pixels).
 
-### window.innerWidth/Height
+#### window.innerWidth/Height
 - Total size of the browser window, including scrollbars
 - Measured in CSS pixels
 - gets [CSS viewport][3] `@media (width)` and `@media (height)` which include scrollbars
@@ -23,7 +47,7 @@ it is property of the screen (not IE8: it measures in CSS pixels).
 - Opera measures it in device pixels.
 - buggy Since Firefox 4 to Firefox 24, could give a wrong value before page load on certain circumstances
 
-### window.pageX/YOffset
+#### window.pageX/YOffset
 - Scrolling offset of the page
 - Measured in CSS pixels
 
@@ -31,7 +55,7 @@ it is property of the screen (not IE8: it measures in CSS pixels).
 The function of the viewport is to constrain the <html> element, which is the uppermost containing block of your site.
 The viewport, in turn, is exactly equal to the browser window: it’s been defined as such.
 
-### document.documentElement.clientWidth/Height
+#### document.documentElement.clientWidth/Height
 - Viewport dimensions (regardless of the dimensions of the <html> element)
 - Measured in CSS pixels
 - equals CSS viewport width **minus** scrollbar width
@@ -39,11 +63,11 @@ The viewport, in turn, is exactly equal to the browser window: it’s been defin
 - [same as][6] `jQuery(window).width()` which [jQuery][7] *calls* the <q>browser viewport</q>
 - [available cross-browser][8]
 
-If you know your DOM, you know that document.documentElement is in fact the <html> element: the root element of any HTML document.
+If you know your DOM, you know that `document.documentElement` is in fact the <html> element: the root element of any HTML document.
 However, the viewport is one level higher, so to speak; it’s the element that contains the <html> element.
 That might matter if you give the <html> element a width (it is  not recommended, but still possible).
 
-### document.documentElement.offsetWidth/Height
+#### document.documentElement.offsetWidth/Height
 - Dimensions of the <html> element (and thus of the page)
 - Measured in CSS pixels
 - IE measures the viewport, and not the <html> element
@@ -59,7 +83,7 @@ screenX/Y gives the coordinates relative to the screen in device pixels.
 width/height uses the same values as documentElement .clientWidth/Height (the viewport, in other words). It works with CSS pixels.
 device-width/device-height uses the same values as screen.width/height (the screen, in other words). It works with device pixels.
 
-## Mobile browsers
+### Mobile browsers
 Two viewports: the visual viewport and the layout viewport.
 Visual viewport is kinda window (aperture) moving on top of layout viewport.
 The visual viewport is the part of the page that’s currently shown on-screen. The user may scroll to change the part of the page he sees, or zoom to change the size of the visual viewport.
@@ -75,7 +99,7 @@ The layout viewport width is always the same. If you rotate your phone, the visu
 This has consequences for the layout viewport’s height, which is now substantially less than in portrait mode. But web developers don’t care about the height, only about the width.
 
 ### Measuring the layout viewport
-document.documentElement.clientWidth/Height
+#### document.documentElement.clientWidth/Height
 - Layout viewport dimensions
 - Measured inCSS pixels
 - Full support: Opera, iPhone, Android, Symbian, Bolt, MicroB, Skyfire, Obigo
@@ -86,7 +110,7 @@ document.documentElement.clientWidth/Height
   - IE returns 1024x768. However, it stores the information in document.body.clientWidth/Height. This is consistent with IE6 desktop.
 
 ### Measuring the visual viewport
-window.innerWidth/Height
+#### window.innerWidth/Height
 - Visual viewport dimensions
 - Measured in CSS pixels
 - Full support: iPhone, Symbian, BlackBerry
