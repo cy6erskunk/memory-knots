@@ -49,3 +49,10 @@ will choose completely at random.
 ### Edge, IE 11 on Win 10
 - displays the very __first__ one with `@rel="icon"`
   - otherwise first `@rel="shortcut icon"`
+
+### Mac
+- iOS Safari does not support transparency in `apple-touch-icon` and replaces alpha-channel with opaque black
+  - w/o `apple-touch-icon` it shows square screenshot of the page in the icon
+- OSX Safari uses `apple-touch-icon` to display icon in favorites page and supports transparency
+- Safari on iOS 7 doesn’t add effects to icons, older versions  won't add effects for files named with `-precomposed.png` suffix
+- [Icon and Image Sizes](https://developer.apple.com/library/iad/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html#//apple_ref/doc/uid/TP40006556-CH27)
