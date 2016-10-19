@@ -55,5 +55,5 @@ will choose completely at random.
   - w/o `apple-touch-icon` it shows square screenshot of the page in the icon
 - OSX Safari uses `apple-touch-icon` to display icon in favorites page and supports transparency
 - Safari on iOS 7 doesn’t add effects to icons, older versions  won't add effects for files named with `-precomposed.png` suffix
-- [Icon and Image Sizes](https://developer.apple.com/library/iad/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html#//apple_ref/doc/uid/TP40006556-CH27)
+- [Icon and Image Sizes](https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)
 - Safari 9 uses special [`mask-icon`](https://developer.apple.com/library/mac/releasenotes/General/WhatsNewInSafari/Articles/Safari_9.html#//apple_ref/doc/uid/TP40014305-CH9-SW20) to display in pinned tab (`rm -fr ~/Library/Safari/Template\ Icons/` and restart Safari to clear pinned tabs icon cache)
