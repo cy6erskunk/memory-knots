@@ -1,4 +1,5 @@
 ## TIL
+- TypeScript has this weird basic type [`never`](https://www.typescriptlang.org/docs/handbook/basic-types.html#never), which is not that weird if you think about it...
 - `npm run` supports `--if-present` flag to avoid exiting with a non-zero exit code when the script is undefined
 - There's [CSS Intrinsic & Extrinsic Sizing Module Level 3](https://www.w3.org/TR/css-sizing-3/) draft spec defining such keyword values of the `width`/`height` CSS properties as `min-content`, `max-content`, and `fit-content()`
 - There's [preview mode](https://code.visualstudio.com/docs/getstarted/userinterface#_preview-mode) enabled in VS Code by default, but it's possible to disable it for `Quick Open` action with `workbench.editor.enablePreviewFromQuickOpen` property to open new files in new tab
