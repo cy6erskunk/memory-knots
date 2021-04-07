@@ -1,4 +1,5 @@
 ## TIL
+- `sort` command supports `-h` parameter to sort by numeric parameters of the kind produced by `du -h`, which makes it possible to generate a listing of directory content based on the file/folder total size: `du -sh ./* | sort -h` (requires GNU Coreutils, which might be missing on an older  Mac OS and could be installed using `brew`) 
 - TypeScript has this weird basic type [`never`](https://www.typescriptlang.org/docs/handbook/basic-types.html#never), which is not that weird if you think about it...
 - `npm run` supports `--if-present` flag to avoid exiting with a non-zero exit code when the script is undefined
 - There's [CSS Intrinsic & Extrinsic Sizing Module Level 3](https://www.w3.org/TR/css-sizing-3/) draft spec defining such keyword values of the `width`/`height` CSS properties as `min-content`, `max-content`, and `fit-content()`
