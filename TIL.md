@@ -1,4 +1,5 @@
 ## TIL
+- JavaScript `every` method returns `true` for empty arrays because it acts as “for all” quantifier in mathematics. Because elements of an empty set satisfy any condition - a _bit_ counterintuitive, but well. Somehow I find it more intuitive that the `some` method always returns `false` for empty arrays. BTW, in Python there are `all` and `any` functions to implement the same behaviour.
 - `sort` command supports `-h` parameter to sort by numeric parameters of the kind produced by `du -h`, which makes it possible to generate a listing of directory content based on the file/folder total size: `du -sh ./* | sort -h` (requires GNU Coreutils, which might be missing on an older  Mac OS and could be installed using `brew`) 
 - TypeScript has this weird basic type [`never`](https://www.typescriptlang.org/docs/handbook/basic-types.html#never), which is not that weird if you think about it...
 - `npm run` supports `--if-present` flag to avoid exiting with a non-zero exit code when the script is undefined
